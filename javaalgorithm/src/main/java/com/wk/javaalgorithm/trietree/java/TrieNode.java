@@ -1,6 +1,4 @@
-package com.wk.javaalgorithm.trietree;
-
-import com.wk.javaalgorithm.Trie;
+package com.wk.javaalgorithm.trietree.java;
 
 import java.util.ArrayList;
 import java.util.HashMap;
