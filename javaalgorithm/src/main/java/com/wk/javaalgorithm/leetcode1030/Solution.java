@@ -21,12 +21,7 @@ public class Solution {
                 result[i * C + j] = new int[]{i, j};
             }
         }
-        Arrays.sort(result, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] ints, int[] t1) {
-                return dist(ints[0], ints[1], r0, c0) - dist(t1[0], t1[1], r0, c0);
-            }
-        });
+        Arrays.sort(result, (ints, t1) -> dist(ints[0], ints[1], r0, c0) - dist(t1[0], t1[1], r0, c0));
         return result;
     }
 
