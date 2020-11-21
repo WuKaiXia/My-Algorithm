@@ -50,6 +50,9 @@ class SolutionK {
 }
 
 
-internal class ListNode(var `val`: Int) {
+class ListNode @JvmOverloads constructor(
+    @JvmField
+    var `val`: Int,
+    @JvmField
     var next: ListNode? = null
-}
+)
