@@ -12,7 +12,7 @@ class SolutionK {
                 prev = prev.next
             } else {
                 var temp: ListNode? = dummyHead
-                while (temp?.next != null && temp.next!!.`val` <= temp.`val`) {
+                while (temp?.next != null && temp.next!!.`val` <= curr.`val`) {
                     temp = temp.next
                 }
 
