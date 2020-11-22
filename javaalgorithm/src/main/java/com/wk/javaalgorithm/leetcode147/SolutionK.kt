@@ -4,24 +4,23 @@ class SolutionK {
 
     internal fun insertionSortList(head: ListNode?): ListNode? {
         if (head?.next == null) return head
-        val dummyHead = ListNode(0)
-        dummyHead.next = head
-        var lastSorted = head
+        val dummyHead = ListNode(0, head)
+        var prev = head
         var curr = head.next
-        while (curr != null && lastSorted != null) {
-            if (lastSorted.`val` <= curr.`val`) {
-                lastSorted = lastSorted.next
+        while (curr != null && prev != null) {
+            if (prev.`val` <= curr.`val`) {
+                prev = prev.next
             } else {
-                var prev: ListNode? = dummyHead
-                while (prev?.next != null && prev.next!!.`val` <= curr.`val`) {
-                    prev = prev.next
+                var temp: ListNode? = dummyHead
+                while (temp?.next != null && temp.next!!.`val` <= temp.`val`) {
+                    temp = temp.next
                 }
 
-                lastSorted.next = curr.next
-                curr.next = prev?.next
-                prev?.next = curr
+                prev.next = curr.next
+                curr.next = temp?.next
+                temp?.next = curr
             }
-            curr = lastSorted?.next
+            curr = prev?.next
         }
         return dummyHead.next
     }
