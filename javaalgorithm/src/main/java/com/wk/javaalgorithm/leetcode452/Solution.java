@@ -18,13 +18,16 @@ public class Solution {
 
     public static int findMinArrowShots(int[][] points) {
         if (points == null || points.length == 0) return 0;
+        // 排序
         Arrays.sort(points, (point1, point2) -> {
             // 避免差值过大而产生溢出
             return Integer.compare(point1[1], point2[1]);
         });
         int ans = 1;
+        // 取最小的为左边界
         int point = points[0][1];
         for (int[] dot : points) {
+            // 小于dot 的右边界时，需要再射一箭
             if (point < dot[0]) {
                 point = dot[1];
                 ans++;
