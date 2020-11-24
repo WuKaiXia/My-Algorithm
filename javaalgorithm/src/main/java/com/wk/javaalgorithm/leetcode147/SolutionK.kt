@@ -46,6 +46,27 @@ class SolutionK {
 
         return dummyHead.next
     }
+
+    fun reverseListNode(head: ListNode?): ListNode? {
+        if (head?.next == null) return head
+        val curr = reverseListNode(head.next)
+        head.next?.next = head
+        head.next = null
+        return curr
+    }
+
+    fun reverseRecyle(head: ListNode?): ListNode? {
+        if (head?.next == null) return head
+        var prev: ListNode? = null
+        var curr: ListNode? = head
+        while (curr != null) {
+            val temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        }
+        return curr
+    }
 }
 
 
