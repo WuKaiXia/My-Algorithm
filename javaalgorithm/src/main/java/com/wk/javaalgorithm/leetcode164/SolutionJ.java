@@ -1,7 +1,6 @@
 package com.wk.javaalgorithm.leetcode164;
 
 import java.util.Arrays;
-import java.util.HashSet;
 
 /**
  * 给定一个无序的数组，找出数组在排序之后，相邻元素之间最大的差值。
