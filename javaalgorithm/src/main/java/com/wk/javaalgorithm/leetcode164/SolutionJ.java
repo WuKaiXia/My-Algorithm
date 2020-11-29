@@ -1,6 +1,11 @@
 package com.wk.javaalgorithm.leetcode164;
 
 import java.util.Arrays;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * 给定一个无序的数组，找出数组在排序之后，相邻元素之间最大的差值。
@@ -87,5 +92,38 @@ public class SolutionJ {
             }
         }
         return max;
+    }
+
+    public int lengthOfLongestSubstring(String s) {
+        if (s == null || s.isEmpty()) return 0;
+        if (s.length() == 1) return 1;
+        int maxLength = 1;
+        char[] chars = s.toCharArray();
+        HashSet<Character> set = new HashSet<>();
+        for (int i = 0; i < chars.length; i++) {
+            set.clear();
+            set.add(chars[i]);
+            for (int j = i + 1; j < chars.length; j++) {
+                char aChar = chars[j];
+                if (set.contains(aChar)) {
+                    maxLength = Math.max(set.size(), maxLength);
+                    break;
+                }
+                set.add(aChar);
+            }
+        }
+
+        int rk = -1;
+        for (int i = 0; i < chars.length; i++) {
+            if (i != 0) {
+                set.remove(chars[i - 1]);
+            }
+            while (rk + 1 < chars.length && !set.contains(chars[rk + 1])) {
+                set.add(chars[rk + 1]);
+                ++rk;
+            }
+            maxLength = Math.max(maxLength, rk - i + 1);
+        }
+        return maxLength;
     }
 }
