@@ -57,7 +57,6 @@ public class SolutionJ {
      * @return
      */
     public static int[] searchRange(int[] nums, int target) {
-        if (nums == null || nums.length < 1) return new int[]{-1, -1};
         int minIndex = nums.length;
         int maxIndex = -1;
         for (int i = 0; i < nums.length; i++) {
@@ -65,6 +64,10 @@ public class SolutionJ {
             if (target == num) {
                 minIndex = Math.min(i, minIndex);
                 maxIndex = Math.max(i, maxIndex);
+            }
+            // 优化
+            if (i >= minIndex && i > maxIndex) {
+                break;
             }
         }
         int[] ints = new int[2];
