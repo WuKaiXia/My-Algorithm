@@ -11,28 +11,20 @@ public class SolutionJ {
         if (A == null || A.length < 1) return 0;
         int row = A.length, column = A[0].length;
         int result = (1 << (column - 1)) * row;
-        // 保证最高位都为1
-        for (int[] a : A) {
-            if (a[0] == 0) {
-                for (int i = 0; i < column; i++) {
-                    // 异或运算，相对应位的值相同则为0，否则为1
-                    a[i] = a[i] ^ 1;
-                }
-            }
-        }
+
         // 优化
         for (int i = 1; i < column; i++) {
             int k = 0;
-            int reverseNum = 0;
             for (int[] ints : A) {
-                if (ints[i] == 1) {
-                    k++;
+                // 该列所在的行需要进行反转
+                if (ints[0] == 0) {
+                    k += 1 - ints[i];
                 } else {
-                    reverseNum++;
+                    k += ints[i];
                 }
             }
-            // 计算每列的和
-            result += Math.max(k, reverseNum) * (1 << (column - 1 - i));
+            // 计算每列的和, 获取k与row - k中的最大值，巧妙的避免了列反转的判断
+            result += Math.max(k, row - k) * (1 << (column - 1 - i));
         }
 
         return result;
