@@ -8,6 +8,38 @@ import java.util.Arrays;
 public class SolutionJ {
 
     /**
+     * 爬楼梯
+     * 调用层级太多，超出时间
+     */
+    public int climbStairs(int n) {
+        if (n == 1) return 1;
+        if (n == 2) return 2;
+        return climbStairs(n - 1) + climbStairs(n - 2);
+    }
+
+    public int climbStairs0(int n) {
+        int[] ans = new int[n];
+        for (int i = 0; i < n; i++) {
+            if (i < 2) {
+                ans[i] = i + 1;
+                continue;
+            }
+            ans[i] += ans[i - 1] + ans[i - 2];
+        }
+        return ans[n - 1];
+    }
+
+    public int climbStairs1(int n) {
+        int p, q = 0, r = 1;
+        for (int i = 1; i < n; i++) {
+            p = q;
+            q = r;
+            r = p + q;
+        }
+        return r;
+    }
+
+    /**
      * 向左或者向下移动，f(i,j) = f(i-1,j)+f(i,j-1)
      * 其中边界为1，即f(0,j)=f(i,0)=1
      */
