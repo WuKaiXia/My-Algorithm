@@ -18,11 +18,31 @@ public class SolutionJ {
             ArrayList<String> list = map.getOrDefault(temp, null);
             if (list == null) {
                 list = new ArrayList<>();
-                list.add(str);
                 map.put(temp, list);
-            } else {
-                list.add(str);
             }
+            list.add(str);
+        }
+        return new ArrayList<>(map.values());
+    }
+
+    /**
+     * 计数
+     */
+    public List<List<String>> groupAnagrams1(String[] strs) {
+        HashMap<String, ArrayList<String>> map = new HashMap<>();
+        int[] count = new int[26];
+        for (String str : strs) {
+            Arrays.fill(count, 0);
+            for (int i = 0, n = str.length(); i < n; i++) {
+                count[str.charAt(i) - 'a']++;
+            }
+            String key = new String(count, 0, 26);
+            ArrayList<String> list = map.getOrDefault(key, null);
+            if (list == null) {
+                list = new ArrayList<>();
+                map.put(key, list);
+            }
+            list.add(str);
         }
         return new ArrayList<>(map.values());
     }
