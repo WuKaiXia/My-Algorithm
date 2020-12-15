@@ -21,12 +21,6 @@ public class SolutionJ {
                 }
             }
         }
-        String str;
-        if (strN[0] == 0) {
-            str = String.valueOf(strN, 1,length);
-        } else {
-            str = new String(strN);
-        }
-        return Integer.parseInt(str);
+        return Integer.parseInt(new String(strN));
     }
 }
