@@ -34,4 +34,29 @@ public class SolutionJ {
         }
         return sell;
     }
+
+    /**
+     *
+     * @param prices [1, 3, 7, 10, 5]
+     * @param fee 3
+     * @return
+     *
+     * 当第3天时卖出股票获得利润3，并记录此时的价格buy=7
+     * 第4天股价10，发现买亏了，直接用10 - buy(7) + profit(第3天)就是最大收益
+     */
+    public int maxProfit1(int[] prices, int fee) {
+        int n = prices.length, profit = 0;
+        int buy = prices[0] + fee;
+        for (int i = 1; i < n; i++) {
+            int price = prices[i];
+            if (price + fee < buy) {
+                buy = price + fee;
+            } else if (price > buy) {
+                profit += price - buy;
+                // 以防反悔今天卖出
+                buy = price;
+            }
+        }
+        return profit;
+    }
 }
