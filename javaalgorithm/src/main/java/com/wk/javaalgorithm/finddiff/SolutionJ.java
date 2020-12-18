@@ -35,8 +35,7 @@ public class SolutionJ {
         int as = 0;
         int length = s.length();
         for (int i = 0; i < length; i++) {
-            as += t.charAt(i);
-            as -= s.charAt(i);
+            as += (t.charAt(i) - s.charAt(i));
         }
 
         as += t.charAt(length);
@@ -53,8 +52,7 @@ public class SolutionJ {
     public char findTheDifference1(String s, String t) {
         int ret = 0, n = s.length();
         for (int i = 0; i < n; i++) {
-            ret ^= s.charAt(i);
-            ret ^= t.charAt(i);
+            ret ^= s.charAt(i) ^ t.charAt(i);
         }
 
         ret ^= t.charAt(n);
