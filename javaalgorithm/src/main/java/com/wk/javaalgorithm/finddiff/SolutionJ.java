@@ -15,9 +15,10 @@ public class SolutionJ {
         }
 
         for (int i = 0, n = t.length(); i < n; i++) {
-            temp[t.charAt(i) - 'a']--;
-            if (temp[t.charAt(i) - 'a'] < 0) {
-                return t.charAt(i);
+            char c = t.charAt(i);
+            temp[c - 'a']--;
+            if (temp[c - 'a'] < 0) {
+                return c;
             }
         }
         return ' ';
