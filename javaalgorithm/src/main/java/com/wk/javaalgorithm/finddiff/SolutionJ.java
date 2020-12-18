@@ -23,4 +23,22 @@ public class SolutionJ {
         }
         return ' ';
     }
+
+    /**
+     * 求和，算差值
+     * @param s
+     * @param t
+     * @return
+     */
+    public char findTheDifference0(String s, String t) {
+        int as = 0, at = 0;
+        for (int i = 0, n = s.length(); i < n; i++) {
+            as += s.charAt(i);
+        }
+
+        for (int i = 0, n = t.length(); i < n; i++) {
+            at += t.charAt(i);
+        }
+        return (char) (at - as);
+    }
 }
