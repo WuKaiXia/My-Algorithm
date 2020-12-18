@@ -26,6 +26,7 @@ public class SolutionJ {
 
     /**
      * 求和，算差值
+     *
      * @param s
      * @param t
      * @return
@@ -40,5 +41,23 @@ public class SolutionJ {
             at += t.charAt(i);
         }
         return (char) (at - as);
+    }
+
+    /**
+     * 1. 0^a=a
+     * 2. a^a=0
+     * 3. a^b^a = (a^a)^b
+     * 基于上边三条规律
+     * 时间复杂度O(n),空间复杂度O(1)
+     */
+    public char findTheDifference1(String s, String t) {
+        int ret = 0;
+        for (int i = 0, n = s.length(); i < n; i++) {
+            ret ^= s.charAt(i);
+            ret ^= t.charAt(i);
+        }
+
+        ret ^= t.charAt(s.length());
+        return (char) ret;
     }
 }
