@@ -32,15 +32,15 @@ public class SolutionJ {
      * @return
      */
     public char findTheDifference0(String s, String t) {
-        int as = 0, at = 0;
-        for (int i = 0, n = s.length(); i < n; i++) {
-            as += s.charAt(i);
+        int as = 0;
+        int length = s.length();
+        for (int i = 0; i < length; i++) {
+            as += t.charAt(i);
+            as -= s.charAt(i);
         }
 
-        for (int i = 0, n = t.length(); i < n; i++) {
-            at += t.charAt(i);
-        }
-        return (char) (at - as);
+        as += t.charAt(length);
+        return (char) as;
     }
 
     /**
@@ -51,13 +51,13 @@ public class SolutionJ {
      * 时间复杂度O(n),空间复杂度O(1)
      */
     public char findTheDifference1(String s, String t) {
-        int ret = 0;
-        for (int i = 0, n = s.length(); i < n; i++) {
+        int ret = 0, n = s.length();
+        for (int i = 0; i < n; i++) {
             ret ^= s.charAt(i);
             ret ^= t.charAt(i);
         }
 
-        ret ^= t.charAt(s.length());
+        ret ^= t.charAt(n);
         return (char) ret;
     }
 }
