@@ -18,7 +18,11 @@ public class SolutionJ {
     }
 
     /**
-     * 暴力解法
+     * 暴力解法, 值的坐标变换如下：
+     * matrix[row][col] 旋转后 matrix[col][n-row-1]
+     * matrix[col][n-row-1] 旋转后 matrix[n-row-1][n-col-1]
+     * matrix[n-row-1][n-col-1] 旋转后 matrix[n-col-1][row]
+     * matrix[n-col-1][row] 旋转后 matrix[row][col]
      */
     public static void rotate(int[][] matrix) {
         int n = matrix.length;
@@ -31,5 +35,24 @@ public class SolutionJ {
             colum--;
         }
         System.arraycopy(ret, 0, matrix, 0, n);
+    }
+
+    public static void rotate1(int[][] matrix) {
+        int n = matrix.length;
+        // 水平翻转
+        for (int i = 0; i < n / 2; i++) {
+            int[] temp = matrix[i];
+            matrix[i] = matrix[n - i - 1];
+            matrix[n - i - 1] = temp;
+        }
+
+        // 主对角线翻转 matrix[row][col]=matrix[col][row]
+        for (int i= 0; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
     }
 }
