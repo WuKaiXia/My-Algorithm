@@ -11,19 +11,15 @@ public class SolutionJ {
 
     public int firstUniqChar(String s) {
         int[] table = new int[26];
-        int res = s.length();
-        for (int i = 0; i < res; i++) {
+        int n = s.length();
+        for (int i = 0; i < n; i++) {
             table[s.charAt(i) - 'a']++;
         }
-        for (int i = 0; i < 26; i++) {
-            int num = table[i];
-            if (num == 1) {
-                int index = s.indexOf((char) (i + 'a'));
-                if (res != -1 && index < res) {
-                    res = index;
-                }
+        for (int i = 0; i < n; i++) {
+            if (table[s.charAt(i) - 'a'] == 1) {
+                return i;
             }
         }
-        return res == s.length() ? -1 : res;
+        return -1;
     }
 }
