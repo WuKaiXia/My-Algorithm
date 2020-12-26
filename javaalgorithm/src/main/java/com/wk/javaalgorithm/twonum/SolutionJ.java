@@ -4,11 +4,23 @@ import java.util.HashMap;
 
 /**
  * 1. 两数之和
- *
+ * <p>
  * 给定一个整数数组 nums 和一个目标值 target，
  * 请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
  */
 public class SolutionJ {
+
+    public int[] twoSum0(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0, n = nums.length; i < n; i++) {
+            Integer index = map.getOrDefault(target - nums[i], -1);
+            if (index != -1) {
+                return new int[]{i, index};
+            }
+            map.put(nums[i], i);
+        }
+        return new int[0];
+    }
 
     public int[] twoSum(int[] nums, int target) {
         int[] ret = new int[2];
