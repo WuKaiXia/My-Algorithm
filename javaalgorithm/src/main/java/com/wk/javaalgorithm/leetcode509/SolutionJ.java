@@ -40,8 +40,7 @@ public class SolutionJ {
     }
 
     public int fib1(int n) {
-        if (n == 0) return 0;
-        if (n == 1) return 1;
+        if (n < 2) return n;
         int x = 0, y = 1;
         int ret = 0;
         for (int i = 2; i < n + 1; i++) {
@@ -50,5 +49,15 @@ public class SolutionJ {
             y = ret;
         }
         return ret;
+    }
+
+    public int fib2(int n) {
+        int first = 0, second = 1;
+
+        while (n-- > 0) {
+            second += first;
+            first = second - first;
+        }
+        return first;
     }
 }
