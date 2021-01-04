@@ -23,6 +23,7 @@ public class SolutionJ {
 
     /**
      * O(n)空间，遍历求值
+     *
      * @param n
      * @return
      */
@@ -36,5 +37,18 @@ public class SolutionJ {
             ret[i] = ret[i - 1] + ret[i - 2];
         }
         return ret[n];
+    }
+
+    public int fib1(int n) {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        int x = 0, y = 1;
+        int ret = 0;
+        for (int i = 2; i < n + 1; i++) {
+            ret = x + y;
+            x = y;
+            y = ret;
+        }
+        return ret;
     }
 }
