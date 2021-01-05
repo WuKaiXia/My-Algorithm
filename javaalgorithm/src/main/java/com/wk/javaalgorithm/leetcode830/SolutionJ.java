@@ -1,6 +1,7 @@
 package com.wk.javaalgorithm.leetcode830;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,6 +10,23 @@ import java.util.List;
  * 我们称所有包含大于或等于三个连续字符的分组为 较大分组 。
  */
 public class SolutionJ {
+
+    public List<List<Integer>> largeGroupPositions0(String s) {
+        ArrayList<List<Integer>> ret = new ArrayList<>();
+        int num = 0;
+        for (int i = 0, n = s.length(); i < n; i++) {
+            if (i == n - 1 || s.charAt(i) != s.charAt(i + 1)) {
+                if (num >= 2) {
+                    ret.add(Arrays.asList(i - num, i));
+                }
+                num = 0;
+            } else {
+                num++;
+            }
+        }
+        return ret;
+    }
+
     public List<List<Integer>> largeGroupPositions(String s) {
         ArrayList<List<Integer>> ret = new ArrayList<>();
         int start = 0, end = 0;
