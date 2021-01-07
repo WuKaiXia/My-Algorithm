@@ -1,5 +1,8 @@
 package com.wk.javaalgorithm.leetcode547;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 547. 省份数量
  * <p>
@@ -12,6 +15,29 @@ package com.wk.javaalgorithm.leetcode547;
  * 返回矩阵中 省份 的数量。
  */
 public class SolutionJ {
+
+    public int findCircleNum0(int[][] isConnected) {
+        int res = 0;
+        int n = isConnected.length;
+        boolean[] visited = new boolean[n];
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                queue.offer(i);
+                while (!queue.isEmpty()) {
+                    Integer num = queue.poll();
+                    visited[num] = true;
+                    for (int j = 0; j < n; j++) {
+                        if (isConnected[num][j] == 1 && !visited[j]) {
+                            queue.offer(j);
+                        }
+                    }
+                }
+                res++;
+            }
+        }
+        return res;
+    }
 
     public int findCircleNum(int[][] isConnected) {
         int n = isConnected.length;
