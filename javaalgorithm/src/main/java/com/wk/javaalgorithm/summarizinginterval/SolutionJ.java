@@ -16,6 +16,26 @@ import java.util.List;
  * "a" ，如果 a == b
  */
 public class SolutionJ {
+
+    public List<String> summaryRanges0(int[] nums) {
+        ArrayList<String> list = new ArrayList<>();
+        int n = nums.length;
+        for (int i = 0; i < n;) {
+            int low = i++;
+            while (i < n && nums[i] == nums[i - 1] + 1) {
+                i++;
+            }
+            int high = i - 1;
+            StringBuilder temp = new StringBuilder(Integer.toString(nums[low]));
+            if (low < high) {
+                temp.append("->");
+                temp.append(nums[high]);
+            }
+            list.add(temp.toString());
+        }
+        return list;
+    }
+
     public List<String> summaryRanges(int[] nums) {
         ArrayList<String> list = new ArrayList<>();
         int i = 0;
