@@ -36,8 +36,7 @@ public class SolutionJ {
         if (pairs.size() == 0) return s;
         int len = s.length();
         UnionFind unionFind = new UnionFind(len);
-        for (List<Integer> pair :
-                pairs) {
+        for (List<Integer> pair : pairs) {
             int x = pair.get(0);
             int y = pair.get(1);
             unionFind.union(x, y);
