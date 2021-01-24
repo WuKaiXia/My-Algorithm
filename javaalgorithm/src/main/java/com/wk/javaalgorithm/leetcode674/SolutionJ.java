@@ -21,4 +21,16 @@ public class SolutionJ {
         }
         return temp  + 1;
     }
+
+    public int findLengthOfLCIS1(int[] nums) {
+        int start = 0;
+        int res = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (i> 0 && nums[i] <= nums[i - 1]) {
+                start = i;
+            }
+            res = Math.max(res, i - start + 1);
+        }
+        return res;
+    }
 }
