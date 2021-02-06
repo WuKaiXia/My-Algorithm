@@ -1,7 +1,13 @@
 package com.wk.javaalgorithm.leetcode888;
 
+import com.wk.javaalgorithm.leetcode222.TreeNode;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 /**
  * 888. 公平的糖果棒交换
@@ -25,18 +31,45 @@ public class SolutionJ {
     public int[] fairCandySwap(int[] A, int[] B) {
         int sumA = Arrays.stream(A).sum();
         int sumB = Arrays.stream(B).sum();
-        int dela = (sumA- sumB) / 2;
+        int dela = (sumA - sumB) / 2;
         HashSet<Integer> set = new HashSet<>();
 
         for (int i : A) {
             set.add(i);
         }
-        for (int y: B) {
+        for (int y : B) {
             int x = dela + y;
             if (set.contains(x)) {
                 return new int[]{x, y};
             }
         }
         return new int[2];
+    }
+
+
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if (root != null) {
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.offer(root);
+            while (!queue.isEmpty()) {
+                TreeNode node = null;
+                int size = queue.size();
+                for (int i = 0; i < size; i++) {
+                    node = queue.poll();
+                    if (node.left != null) {
+                        queue.offer(node.left);
+                    }
+                    if (node.right != null) {
+                        queue.offer(node.right);
+                    }
+                }
+                if (node != null) {
+                    res.add(node.value);
+                }
+            }
+        }
+        return res;
+
     }
 }
