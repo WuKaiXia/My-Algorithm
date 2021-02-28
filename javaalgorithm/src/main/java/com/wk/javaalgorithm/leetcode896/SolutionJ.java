@@ -19,15 +19,28 @@ public class SolutionJ {
         }
         for (int i = 0; i < n - 1; i++) {
             if (isIncrease) {
-                if (A[i + 1] - A[i] < 0) {
+                if (A[i + 1] < A[i]) {
                     return false;
                 }
             } else {
-                if (A[i + 1] - A[i] > 0) {
+                if (A[i + 1] > A[i]) {
                     return false;
                 }
             }
         }
         return true;
+    }
+    public boolean isMonotonic1(int[] A) {
+        int n = A.length;
+        boolean inc = true, dec = true;
+        for (int i = 0; i < n - 1; i++) {
+            if (A[i + 1] > A[i]) {
+                dec = false;
+            }
+            if (A[i + 1] < A[i]) {
+                inc = false;
+            }
+        }
+        return inc || dec;
     }
 }
