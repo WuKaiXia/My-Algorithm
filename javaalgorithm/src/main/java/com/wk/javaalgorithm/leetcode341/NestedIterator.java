@@ -1,7 +1,9 @@
 package com.wk.javaalgorithm.leetcode341;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -14,10 +16,14 @@ public class NestedIterator implements Iterator<Integer> {
     private ArrayList<Integer> vals;
     private Iterator<Integer> cur;
 
+    private Deque<Iterator<NestedInteger>> stack;
+
     public NestedIterator(List<NestedInteger> nestedList) {
-        vals = new ArrayList<>();
-        dfs(nestedList);
-        cur = vals.iterator();
+//        vals = new ArrayList<>();
+//        dfs(nestedList);
+//        cur = vals.iterator();
+        stack = new LinkedList<>();
+        stack.push(nestedList.iterator());
     }
 
     private void dfs(List<NestedInteger> nestedList) {
@@ -33,12 +39,29 @@ public class NestedIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
-        return cur.next();
+//        return cur.next();
+        return stack.peek().next().getInteger();
     }
 
     @Override
     public boolean hasNext() {
-        return cur.hasNext();
+//        return cur.hasNext();
+        while (!stack.isEmpty()) {
+            Iterator<NestedInteger> nestIterator = stack.peek();
+            if (!nestIterator.hasNext()) {
+                stack.pop();
+                continue;
+            }
+            NestedInteger nest = nestIterator.next();
+            if (nest.isInteger()) {
+                ArrayList<NestedInteger> nestedIntegers = new ArrayList<>();
+                nestedIntegers.add(nest);
+                stack.push(nestedIntegers.iterator());
+                return true;
+            }
+            stack.push(nest.getList().iterator());
+        }
+        return false;
     }
 }
 
